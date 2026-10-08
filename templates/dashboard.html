@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-6xl mx-auto p-6 md:p-10">
+    <div class="bg-slate-900 text-white p-8 rounded-3xl mb-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div>
+            <span class="bg-orange-500 text-xs font-bold px-3 py-1 rounded-full uppercase">Verified Learner</span>
+            <h1 class="text-4xl font-black mt-2">Welcome Back, Md Sakir Jalal 👋</h1>
+            <p class="text-slate-400 mt-1">Ready to solve today's micro-tasks and earn rewards?</p>
+        </div>
+        <div class="bg-white/10 p-4 rounded-2xl border border-white/10 text-center">
+            <p class="text-xs text-slate-400 uppercase tracking-widest">Total Earnings</p>
+            <p class="text-3xl font-black text-green-400">₹4,850</p>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+        <a href="/languages" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-orange-500 transition group">
+            <div class="text-3xl mb-3">🚀</div>
+            <h3 class="font-bold text-xl mb-1 group-hover:text-orange-500">Select Field / Language</h3>
+            <p class="text-slate-500 text-sm">Choose between Python, JavaScript, SQL, Cybersecurity, and more.</p>
+        </a>
+        <a href="/assessment" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-orange-500 transition group">
+            <div class="text-3xl mb-3">🧠</div>
+            <h3 class="font-bold text-xl mb-1 group-hover:text-orange-500">Take Skill Assessment</h3>
+            <p class="text-slate-500 text-sm">Evaluate your exact level and get instant certificates upon passing.</p>
+        </a>
+        <a href="/tasks" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-orange-500 transition group">
+            <div class="text-3xl mb-3">💼</div>
+            <h3 class="font-bold text-xl mb-1 group-hover:text-orange-500">Micro-Task Marketplace</h3>
+            <p class="text-slate-500 text-sm">Solve anonymized company challenges and track payouts.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

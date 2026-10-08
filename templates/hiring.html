@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto p-6 md:p-10">
+    <div class="bg-gradient-to-r from-orange-500 to-red-600 text-white p-8 rounded-3xl mb-8">
+        <span class="bg-white/20 text-xs font-bold px-3 py-1 rounded-full">For Companies & Recruiters</span>
+        <h1 class="text-4xl font-black mt-2">Hire Pre-Verified Talent</h1>
+        <p class="mt-2 text-orange-100 max-w-xl">Stop looking at unverified resumes. Hire developers who have proven their skills on real anonymized company tasks.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-xl mb-2">Md Sakir Jalal</h3>
+            <p class="text-sm text-orange-600 font-semibold mb-3">Rank #3 in Bhagalpur • Python & Data Specialist</p>
+            <p class="text-slate-600 text-sm mb-4">Completed 12 company micro-tasks with 92% accuracy score.</p>
+            <button onclick="alert('Recruiter connection request sent!')" class="bg-slate-900 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-orange-500 transition">Request Hire / Interview</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

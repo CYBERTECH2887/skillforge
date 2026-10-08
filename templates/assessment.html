@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto my-12 bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-slate-100 relative overflow-hidden">
+    
+    {% if status == 'completed' %}
+    <div class="text-center py-10">
+        <div class="w-24 h-24 bg-green-100 text-green-600 text-5xl rounded-full flex items-center justify-center mx-auto mb-6 animate-float">🏆</div>
+        <h2 class="text-4xl font-black mb-3">Assessment Passed!</h2>
+        <p class="text-slate-600 mb-8 text-lg">You scored <strong class="text-green-600 font-black text-2xl">92%</strong>. Your profile has been upgraded.</p>
+        <a href="/passport" class="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-4 rounded-xl font-bold hover:shadow-lg hover:-translate-y-1 transition-all">View Skill Passport</a>
+    </div>
+    
+    <!-- Fire Confetti Immediately on Load -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#f97316', '#22c55e'] });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#f97316', '#22c55e'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        });
+    </script>
+    
+    {% else %}
+    
+    <!-- Test UI -->
+    <div class="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
+        <div>
+            <span class="text-xs font-bold bg-blue-100 text-blue-700 px-3 py-1 rounded-full uppercase tracking-wider">Module 1/5</span>
+            <h2 class="text-xl font-bold mt-2">Python Fundamentals</h2>
+        </div>
+        <div class="text-right">
+            <span class="text-xs text-slate-500 uppercase font-bold">Time Left</span>
+            <div id="timer" class="text-2xl font-mono font-black text-orange-500">10:00</div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-slate-100 h-2 rounded-full mb-8 overflow-hidden">
+        <div class="h-full bg-gradient-to-r from-orange-400 to-orange-500 w-1/5 transition-all duration-1000 ease-out"></div>
+    </div>
+
+    <div class="mb-10">
+        <h3 class="text-2xl font-black mb-6 leading-relaxed">Which of the following methods handles data frame merging in Pandas?</h3>
+        <div class="space-y-4">
+            <label class="block p-5 border-2 border-slate-100 rounded-xl hover:border-orange-500 hover:bg-orange-50 cursor-pointer font-medium transition-all group">
+                <input type="radio" name="q1" class="mr-3 accent-orange-500 scale-125"> <span class="group-hover:text-orange-700">pd.merge()</span>
+            </label>
+            <label class="block p-5 border-2 border-slate-100 rounded-xl hover:border-orange-500 hover:bg-orange-50 cursor-pointer font-medium transition-all group">
+                <input type="radio" name="q1" class="mr-3 accent-orange-500 scale-125"> <span class="group-hover:text-orange-700">df.combine()</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="flex justify-between items-center">
+        <button onclick="showToast('Hint applied!', 'error')" class="text-slate-500 font-bold hover:text-orange-500">Need a Hint?</button>
+        <a href="/assessment?status=completed" class="bg-slate-900 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-orange-500 transition-all shadow-md">Next Question ➔</a>
+    </div>
+
+    <script>
+        // Live Timer Logic
+        let time = 600; // 10 minutes in seconds
+        const timerEl = document.getElementById('timer');
+        setInterval(() => {
+            let minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            timerEl.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (time > 0) time--;
+        }, 1000);
+    </script>
+    {% endif %}
+</div>
+{% endblock %}

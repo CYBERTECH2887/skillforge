@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-6xl mx-auto p-6 md:p-10">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+        <div>
+            <h1 class="text-4xl font-black">Micro-Task Marketplace</h1>
+            <p class="text-slate-500 mt-2">Live company tasks ready to be solved.</p>
+        </div>
+        
+        <!-- Live Search Bar -->
+        <div class="relative w-full md:w-72">
+            <input type="text" id="searchInput" placeholder="Search tasks (e.g. Python)..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:border-orange-500 outline-none shadow-sm transition-colors">
+            <span class="absolute left-3 top-3.5 text-slate-400">🔍</span>
+        </div>
+    </div>
+
+    <!-- Task List -->
+    <div class="grid gap-6" id="taskList">
+        <div class="task-card bg-white p-6 rounded-2xl border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:shadow-xl hover:shadow-orange-500/10 transition-all group">
+            <div>
+                <span class="text-xs font-mono font-bold bg-slate-100 px-3 py-1 rounded-full">TASK #4821</span>
+                <span class="text-xs font-bold bg-orange-100 text-orange-700 px-3 py-1 rounded-full ml-2">Python</span>
+                <h3 class="text-xl font-bold mt-3 group-hover:text-orange-600 transition-colors">Data Cleaning Pipeline</h3>
+                <p class="text-sm text-slate-500 mt-1">Remove duplicate customer records from a 10k row synthetic dataset.</p>
+            </div>
+            <div class="text-right w-full md:w-auto mt-4 md:mt-0">
+                <p class="text-2xl font-black text-green-600 mb-2">₹500</p>
+                <button onclick="processPayment(this)" class="w-full md:w-auto bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-500 transition-colors flex items-center justify-center gap-2">
+                    <span>Simulate Solve</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="task-card bg-white p-6 rounded-2xl border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:shadow-xl hover:shadow-orange-500/10 transition-all group">
+            <div>
+                <span class="text-xs font-mono font-bold bg-slate-100 px-3 py-1 rounded-full">TASK #4822</span>
+                <span class="text-xs font-bold bg-blue-100 text-blue-700 px-3 py-1 rounded-full ml-2">SQL</span>
+                <h3 class="text-xl font-bold mt-3 group-hover:text-orange-600 transition-colors">Optimize Database Query</h3>
+                <p class="text-sm text-slate-500 mt-1">Refactor a slow-running JOIN query fetching data across 4 tables.</p>
+            </div>
+            <div class="text-right w-full md:w-auto mt-4 md:mt-0">
+                <p class="text-2xl font-black text-green-600 mb-2">₹850</p>
+                <button onclick="processPayment(this)" class="w-full md:w-auto bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-500 transition-colors">
+                    <span>Simulate Solve</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Live Search Logic
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        let filter = this.value.toLowerCase();
+        let cards = document.getElementsByClassName('task-card');
+        for (let i = 0; i < cards.length; i++) {
+            let text = cards[i].innerText.toLowerCase();
+            cards[i].style.display = text.includes(filter) ? "" : "none";
+        }
+    });
+
+    // Payment Simulation Logic with Confetti & Toasts
+    function processPayment(btn) {
+        let originalText = btn.innerHTML;
+        btn.innerHTML = "⏳ Processing...";
+        btn.disabled = true;
+        btn.classList.add('opacity-70');
+
+        setTimeout(() => {
+            // Trigger Confetti
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            
+            // Show Success Notification
+            showToast("🎉 Task Solved! Reward Credited to Wallet.", "success");
+            
+            // Update Button
+            btn.innerHTML = "✅ Paid";
+            btn.classList.remove('bg-slate-900', 'hover:bg-orange-500');
+            btn.classList.add('bg-green-500', 'text-white');
+        }, 1500);
+    }
+</script>
+{% endblock %}

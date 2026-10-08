@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto p-6 md:p-10">
+    <h1 class="text-4xl font-black mb-2">Select Your Target Field</h1>
+    <p class="text-slate-500 mb-8">Choose your domain to view market value and begin adaptive assessment.</p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+        {% for lang, demand in [('Python & Data Science', 'High Demand (₹8L+ Avg)'), ('Full Stack Web Dev', 'Very High Demand'), ('Cybersecurity & Ethical Hacking', 'Specialist Field'), ('SQL & Database Analytics', 'Essential Skill'), ('Java Enterprise Systems', 'Corporate Favorite'), ('AI & Prompt Engineering', 'Emerging Trend')] %}
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+            <span class="text-xs font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">{{ demand }}</span>
+            <h3 class="font-bold text-xl mt-4 mb-2">{{ lang }}</h3>
+            <p class="text-sm text-slate-500 mb-6">Master core competencies and unlock verified company micro-tasks.</p>
+            <a href="/assessment" class="block text-center bg-slate-900 text-white py-2.5 rounded-xl font-bold hover:bg-orange-500 transition">Start Path</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

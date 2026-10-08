@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="relative overflow-hidden py-24 px-6 text-center max-w-5xl mx-auto">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-orange-400/20 to-red-400/20 rounded-full blur-3xl -z-10 animate-float"></div>
+    
+    <span class="px-4 py-1.5 bg-orange-100 text-orange-700 rounded-full text-xs font-bold uppercase tracking-wider mb-6 inline-block shadow-sm">🚀 Platform 2.0 is Live</span>
+    
+    <h1 class="text-6xl md:text-7xl font-black tracking-tight mb-6 leading-tight text-slate-900">
+        Don't buy a certificate. <br>
+        <span id="typing-text" class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 typing-cursor"></span>
+    </h1>
+    
+    <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+        Join <span class="font-bold text-slate-900">10,000+</span> learners. Validate skills through AI tests, climb City Ranks, solve real micro-tasks, and get hired.
+    </p>
+    
+    <div class="flex justify-center gap-4">
+        <a href="/register" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-2xl font-bold hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-1 transition-all duration-300">Start Learning & Earning</a>
+        <a href="/tasks" class="bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 hover:-translate-y-1 transition-all duration-300 shadow-sm">View Marketplace</a>
+    </div>
+</div>
+
+<script>
+    // Advanced Typing Effect JS
+    const textArray = ["Earn your credentials.", "Get Paid to Learn.", "Build a Skill Passport."];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingDelay = 100;
+    const erasingDelay = 50;
+    const newTextDelay = 2000;
+
+    function typeEffect() {
+        const currentText = textArray[textIndex];
+        const typingElement = document.getElementById("typing-text");
+        
+        if (isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let delay = isDeleting ? erasingDelay : typingDelay;
+
+        if (!isDeleting && charIndex === currentText.length) {
+            delay = newTextDelay;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % textArray.length;
+            delay = 500;
+        }
+        setTimeout(typeEffect, delay);
+    }
+    document.addEventListener("DOMContentLoaded", function() { setTimeout(typeEffect, 1000); });
+</script>
+{% endblock %}
